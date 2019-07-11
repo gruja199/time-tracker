@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace TimeTracker.Controllers
 {
+
     [Route("api/[controller]")]
     [ApiController]
     public class ValuesController : ControllerBase
