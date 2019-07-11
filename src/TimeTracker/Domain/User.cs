@@ -16,7 +16,7 @@ namespace TimeTracker.Domain
 
 
 
-        public string HourRate { get; set; }
+        public decimal HourRate { get; set; }
 
 
     }

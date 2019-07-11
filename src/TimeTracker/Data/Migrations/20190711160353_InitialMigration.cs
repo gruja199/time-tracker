@@ -27,7 +27,7 @@ namespace TimeTracker.Data.Migrations
                     Id = table.Column<long>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(nullable: false),
-                    HourRate = table.Column<string>(nullable: true)
+                    HourRate = table.Column<decimal>(nullable: true)
                 },
                 constraints: table =>
                 {
