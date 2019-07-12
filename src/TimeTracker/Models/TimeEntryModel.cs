@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TimeTracker.Domain;
 
 namespace TimeTracker.Models
 {
@@ -30,6 +31,27 @@ namespace TimeTracker.Models
 
         public decimal Total => Hours * HourRate; 
 
-        
+
+
+        public static TimeEntryModel FromTimeEntry(TimeEntry timeEnrty)
+        {
+
+            return new TimeEntryModel
+            {
+                Id = timeEnrty.Id,
+                ProjectId = timeEnrty.Project.Id,
+                ProjectName = timeEnrty.Project.Name,
+                ClientName = timeEnrty.Project.Client.Name,
+                UserId = timeEnrty.User.Id,
+                UserName = timeEnrty.User.Name,
+                EntryDate = timeEnrty.EntryDate,
+                Hours = timeEnrty.Hours,
+                Description = timeEnrty.Description,
+                HourRate = timeEnrty.HourRate
+
+            };
+            
+
+        }
     }
 }
