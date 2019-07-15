@@ -54,6 +54,8 @@ namespace TimeTracker
                 app.UseHsts();
             }
 
+            app.UseMiddleware<ErrorHandelingMiddleware>();
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
