@@ -1,11 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
+﻿using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using TimeTracker.Data;
 using TimeTracker.Domain;
 using TimeTracker.Models;
@@ -13,6 +11,7 @@ using TimeTracker.Models;
 namespace TimeTracker.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("/api/projects")]
     public class ProjectsController : Controller
     {
@@ -62,6 +61,7 @@ namespace TimeTracker.Controllers
             };
         }
 
+        [Authorize(Roles = "admin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(long id)
         {
@@ -80,6 +80,7 @@ namespace TimeTracker.Controllers
             return Ok();
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPost]
         public async Task<ActionResult<ProjectModel>> Create(ProjectInputModel model)
         {
@@ -102,6 +103,7 @@ namespace TimeTracker.Controllers
             return CreatedAtAction(nameof(GetById), "projects", new { id = project.Id }, resultModel);
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPut("{id}")]
         public async Task<ActionResult<ProjectModel>> Update(long id, ProjectInputModel model)
         {
