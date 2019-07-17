@@ -8,6 +8,12 @@
     <DocumentationFile>C:\Users\student\Desktop\.networkshop\TimeTracker\src\TimeTracker\bin\Debug\netcoreapp3.0\TimeTracker.xml</DocumentationFile>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>bin\Debug\netcoreapp3.0\TimeTracker.xml</DocumentationFile>
+    <NoWarn>1701;1702;1591</NoWarn>
+  </PropertyGroup>
+  
+  
   <ItemGroup>
     <PackageReference Include="FluentValidation.AspNetCore" Version="8.5.0-preview3" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.0.0-preview6.19307.2" />

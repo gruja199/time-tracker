@@ -59,6 +59,8 @@ namespace TimeTracker
 
             app.UseMiddleware<ErrorHandelingMiddleware>();
 
+            app.UseMiddleware<LimitingMiddleware>();
+
             app.UseRouting();
 
             app.UseAuthentication();
