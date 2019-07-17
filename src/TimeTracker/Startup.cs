@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FluentValidation.AspNetCore;
+using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
@@ -31,7 +33,7 @@ namespace TimeTracker
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<TimeTrackerDbContext>(options =>
-                options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+             options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddJwtBearerAuthentication(Configuration);
 
@@ -40,6 +42,10 @@ namespace TimeTracker
 
             services.AddControllers().AddFluentValidation(
                 fv => fv.RegisterValidatorsFromAssemblyContaining<UserInputModelValidator>());
+
+            services.AddHealthChecks()
+                    .AddSqlite(Configuration.GetConnectionString("DefaultConnection"));
+            services.AddHealthChecksUI();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -69,9 +75,18 @@ namespace TimeTracker
 
             app.UseOpenApi();
             app.UseSwaggerUi3();
+
+            app.UseHealthChecksUI();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHealthChecks("/health", new HealthCheckOptions
+                {
+
+                    Predicate = _ => true,
+                    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+
+                });
             });
         }
     }
