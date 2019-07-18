@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Components.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using TimeTrackerAPI.Client.Security;
 
 namespace TimeTrackerAPI.Client
 {
@@ -7,6 +8,10 @@ namespace TimeTrackerAPI.Client
     {
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddAuthorizationCore();
+            services.AddTokenAuthenticationStateProvider();
+
         }
 
         public void Configure(IComponentsApplicationBuilder app)
