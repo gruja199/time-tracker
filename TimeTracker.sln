@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.29021.104
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimeTracker", "src\TimeTracker\TimeTracker.csproj", "{01D5B14A-AD6E-454A-834C-B8F5B0391D09}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeTracker.Tests", "src\TimeTracker.Tests\TimeTracker.Tests.csproj", "{8B6F8AE5-3E03-4AE0-9B93-E3843B5FCEC8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimeTracker.Tests", "src\TimeTracker.Tests\TimeTracker.Tests.csproj", "{8B6F8AE5-3E03-4AE0-9B93-E3843B5FCEC8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeTrackerAPI.Client", "TimeTrackerAPI.Client\TimeTrackerAPI.Client.csproj", "{9F0C8EAB-A409-4753-B748-3245441044A5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{8B6F8AE5-3E03-4AE0-9B93-E3843B5FCEC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8B6F8AE5-3E03-4AE0-9B93-E3843B5FCEC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8B6F8AE5-3E03-4AE0-9B93-E3843B5FCEC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F0C8EAB-A409-4753-B748-3245441044A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F0C8EAB-A409-4753-B748-3245441044A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F0C8EAB-A409-4753-B748-3245441044A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F0C8EAB-A409-4753-B748-3245441044A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
