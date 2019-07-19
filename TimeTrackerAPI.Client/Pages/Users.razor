@@ -28,28 +28,44 @@ else
     </thead>
     <tbody>
         @foreach (var user in users.Items)
-        {
-            <tr>
-               <td>@user.Name</td> 
-               <td>@user.HourRate</td> 
-               <td class="text-right">
-                   <div class="btn-group"><a href="/users/(@user.Id)/edit" class="btn-light"><i class="oi oi-pencil">Edit</i></a></div>
-                   <div class="btn-group"><a href="/users/(@user.Id)/delete" class="btn-light text-danger"><i class="oi oi-delete">Delete</i></a></div>
-               </td> 
-            </tr>
-        }
+            {
+                <tr>
+                    <td>@user.Name</td>
+                    <td>@user.HourRate</td>
+                    <td class="text-right">
+                        <div class="btn-group" role="group">
+                            <a href="/users/@(user.Id)/edit" class="btn btn-light"><i class="oi oi-pencil"></i> Edit</a>
+                            <a href="/users/@(user.Id)/delete" class="btn btn-light text-danger"><i class="oi oi-delete"></i> Delete</a>
+                        </div>
+                    </td>
+                </tr>
+            }
     </tbody>
     
 </table>
 
 
-    <!--PAGER-->
+   <Pager Model="@users" Loader="@LoadUsers"/>
 }
 
 @code
 {
 
+  PageList<UserModel> users;
 
-private PageList<UserModel> users;
+    protected override async Task OnInitAsync()
+    {
+        await LoadUsers();
+    }
+
+    private async Task LoadUsers(int page = 1)
+    {
+        const int pageSize = 2;
+        var url = $"users?page={page}&size={pageSize}";
+        users = await ApiService.GetAsync<PageList<UserModel>>(url);
+
+        // State change not triggered from for loop above
+        base.StateHasChanged();
+    }
 
 }
